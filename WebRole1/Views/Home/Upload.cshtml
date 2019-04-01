@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2 style="font-family: Forte; font-size:48px; color:#ffffff">Upload Image</h2>
+
+<p>
+    @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-horizontal" style="font-family:Forte; color:#ffffff; font-size: 18px">
+            <hr />
+            <div class="form-group">
+                <label for="file" class="control-label col-md-2">File</label>
+                <div>
+                    <input type="file" name="file" id="file" style="width: 100%;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Upload" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+</p>
+<br />
+<br />
+
+<div class="container">
+    <div id="slike" style="font-family:Forte; font-size:18px">
+        <ul style="list-style-type:none; padding:0;">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <img src="@item" alt="image here" width="100" , height="100" />
+                    <a id="@item" href="#" onclick="deleteImage('@item');">Delete</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<script>
+    function deleteImage(item) {
+        var url = "/Home/DeleteImage";
+        $.post(url, { name: item }, function (data) {
+            window.location.href = "/Home/Upload";
+        });
+    }
+</script>
+
+<style>
+    body {
+    background: url("https://images.pexels.com/photos/179734/pexels-photo-179734.jpeg?h=350&auto=compress") no-repeat center center fixed; 
+    background-size: cover;
+}
+    .container{
+        margin: auto;
+        max-width: 700px;
+        width: 700px;
+        text-align: center;
+    }
+#slike ul{
+    display:inline-block;
+    float:left;
+    padding: 0;
+    margin: 10px auto;
+}
+
+#slike li{
+    list-style:square;
+    margin: 0 10px;
+}
+
+#slike li a, #slike li {
+    width: 120px;
+    height: 120px;
+    display:inline-block;
+    float:left;
+}
+</style>

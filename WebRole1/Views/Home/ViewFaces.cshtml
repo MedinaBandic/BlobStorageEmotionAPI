@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "ViewFaces";
+}
+
+<h2 style="font-family: Forte; color:#ffffff; font-size:48px">Can I see you?</h2>
+<hr />
+<img id ="photo"src="@ViewBag.ImageData"/>
+
+<br />
+<br />
+<table style="border: 5px solid black; border-collapse: collapse; font-family: Cooper; width: 100%;">
+    <tr style="text-align:center; color:#ffffff; ">
+        <th></th>
+        <th>Age</th>
+        <th>Beard</th>
+        <th>Moustache</th>
+        <th>Sideburns</th>
+        <th>Gender</th>
+        <th>Glassess</th>
+        <th>HeadPose-Pitch</th>
+        <th>HeadPose-Roll</th>
+        <th>HeadPose-Jaw</th>
+        <th>Smile</th>
+    </tr>
+    <tr class="row"; style="color:#ffffff; text-align:center; font-family: Cooper ">
+    @{ var k = 0; }
+    @foreach (var i in @ViewBag.Attributes)
+    {
+        <td>@i</td>
+        if (k == 9 || k == 19 || k == 29 || k == 39 || k == 49 || k == 59 || k == 69)
+        {
+            @:</tr><tr class="row"; style="color:#ffffff; text-align:center; font-family: Cooper ">
+            }
+        k++;
+    }
+    </tr>
+</table>
+<style>
+     body {
+    background: url("https://images.pexels.com/photos/82383/night-light-black-metal-82383.jpeg?w=940&h=650&auto=compress&cs=tinysrgb") no-repeat center center fixed; 
+    background-size: cover;
+}
+     #photo{
+         display:block;
+         margin-left: auto;
+         margin-right:auto;
+         width:50%;
+     }
+</style>
